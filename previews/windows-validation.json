@@ -1,0 +1,17 @@
+{
+  "version": "0.1.1",
+  "dll": "Windows x64 PE32+; plugMain and SetLogCallback exported",
+  "imports": "Only Windows/OpenGL/UCRT system DLLs; C++ runtime and GLEW linked statically",
+  "runtime": "Wine 11.18 on Apple M2 Max",
+  "headless_result": "PASS",
+  "checks": [
+    "Branded DLL metadata and native WAD parameter",
+    "Hidden helper, Windows job guard and shared memory",
+    "Real Doom E1M1 frames",
+    "UTF-8 WAD path containing accented characters",
+    "Forward/turn, pause/restart, firing/ammo HUD, menus",
+    "Independent instances, missing/corrupt WAD recovery, cleanup"
+  ],
+  "rendering": "Native Windows Resolume unverified; Wine cannot create required OpenGL 4.1 context",
+  "signing": "Not Authenticode signed"
+}

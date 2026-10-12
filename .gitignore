@@ -1,0 +1,7 @@
+build/
+dist/
+samples/*.wad
+samples/*.zip
+__pycache__/
+.DS_Store
+*.ppm

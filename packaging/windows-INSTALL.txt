@@ -1,0 +1,29 @@
+MITH.xyz — MITH Doom 0.1.1
+Windows download: 64-bit Windows 10/11 and 64-bit Resolume 7.
+
+1. Quit Resolume.
+2. Copy BOTH MITH Doom.dll and the complete MITH Doom Resources folder into:
+   Documents\Resolume Arena\Extra Effects
+   or Documents\Resolume Avenue\Extra Effects.
+   If your Documents folder is in OneDrive, use the actual Documents location.
+   The Resources folder must remain beside the DLL with its original name.
+3. Launch Resolume. In Sources, drag MITH Doom into a clip slot and trigger it.
+4. Select your Doom/Doom II game WAD using Game > WAD File.
+5. Map game controls using keyboard shortcuts in Piano mode (hold = on,
+   release = off). See README.md for the key table.
+
+For the free first episode, download the original shareware archive:
+https://www.gamers.org/pub/idgames/idstuff/doom/win95/doom95.zip
+Extract DOOM1.WAD and select it in the plugin. No old installer needs to run.
+Game WADs are separate from this download.
+
+OpenGL 4.1 or newer is required. The plugin bundles its engine and links its
+C++/OpenGL-loader dependencies statically; no extra runtime DLL is supplied.
+The helper is started by the plugin, not by opening DoomEngine.exe yourself.
+
+Windows preview: the DLL, process bridge and gameplay were tested under Wine.
+Rendering in native Windows Resolume has not yet been verified. Please test
+on your setup before using it in a show. This release is not Authenticode-signed.
+
+Website: https://MITH.xyz
+The Source folder contains the complete source ZIP and dependency licences.

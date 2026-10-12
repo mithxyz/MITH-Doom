@@ -1,0 +1,25 @@
+MITH.xyz — MITH Doom 0.1.1
+Mac download: Apple Silicon + Intel, macOS 11 or newer.
+
+1. Quit Resolume.
+2. Copy MITH Doom.bundle into your Resolume Extra Effects folder:
+   Documents/Resolume Arena/Extra Effects
+   or Documents/Resolume Avenue/Extra Effects.
+3. Launch Resolume. In Sources, drag MITH Doom into a clip slot and trigger it.
+4. Select your Doom/Doom II game WAD using Game > WAD File.
+5. Map game controls using keyboard shortcuts in Piano mode (hold = on,
+   release = off). See README.md for the key table.
+
+For the free first episode, download the original shareware archive:
+https://www.gamers.org/pub/idgames/idstuff/doom/win95/doom95.zip
+Extract DOOM1.WAD and select it in the plugin. No old installer needs to run.
+Game WADs are separate from this download.
+
+This developer build is ad-hoc signed, not Apple-notarized. If macOS blocks
+the downloaded plugin, only after checking that you trust this download,
+remove its quarantine attribute in Terminal:
+xattr -dr com.apple.quarantine "$HOME/Documents/Resolume Arena/Extra Effects/MITH Doom.bundle"
+Use Resolume Avenue in the path if that is your product. Restart Resolume.
+
+Website: https://MITH.xyz
+The Source folder contains the complete source ZIP and dependency licences.

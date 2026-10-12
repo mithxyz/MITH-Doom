@@ -1,0 +1,53 @@
+name: Build plugin downloads
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mac:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build universal Mac bundle
+        run: bash build.sh
+      - name: Package Mac download and source
+        run: python3 package.py --platform mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MITH-Doom-Mac
+          path: |
+            dist/*Mac.zip
+            dist/*Source.zip
+            dist/SHA256SUMS.txt
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download pinned LLVM-MinGW toolchain
+        shell: pwsh
+        run: |
+          $url = 'https://github.com/mstorsjo/llvm-mingw/releases/download/20261006/llvm-mingw-20261006-ucrt-x86_64.zip'
+          Invoke-WebRequest $url -OutFile "$env:RUNNER_TEMP/llvm-mingw.zip"
+          Expand-Archive "$env:RUNNER_TEMP/llvm-mingw.zip" "$env:RUNNER_TEMP/mith-tools"
+      - name: Build Windows x64 plugin
+        shell: bash
+        run: MINGW_BIN="$(cygpath -u "$RUNNER_TEMP")/mith-tools/llvm-mingw-20261006-ucrt-x86_64/bin" bash build-windows.sh
+      - name: Verify native Windows engine and bridge
+        shell: bash
+        run: |
+          compiler="$(cygpath -u "$RUNNER_TEMP")/mith-tools/llvm-mingw-20261006-ucrt-x86_64/bin/x86_64-w64-mingw32-clang++"
+          "$compiler" -std=c++17 -O2 -static -municode -Wl,--stack,8388608 -Isrc tests/headless_windows.cpp build/windows/plugin/EngineWindows.o -o dist/windows/headless_windows.exe
+          curl --fail --location https://www.gamers.org/pub/idgames/idstuff/doom/win95/doom95.zip -o "$RUNNER_TEMP/doom95.zip"
+          unzip -p "$RUNNER_TEMP/doom95.zip" DOOM1.WAD > "$RUNNER_TEMP/doom1.wad"
+          dist/windows/headless_windows.exe "$(cygpath -w "$PWD/dist/windows/MITH Doom.dll")" "$(cygpath -w "$RUNNER_TEMP/doom1.wad")" "$(cygpath -w "$RUNNER_TEMP/mith-validation")"
+      - name: Package Windows download and source
+        run: python package.py --platform windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MITH-Doom-Windows
+          path: |
+            dist/*Windows.zip
+            dist/*Source.zip
+            dist/SHA256SUMS.txt

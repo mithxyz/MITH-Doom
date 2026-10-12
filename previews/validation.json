@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "version": "0.1.1",
+  "checks": [
+    "FFGL ABI and native WAD parameter",
+    "Shareware E1M1 rendered through actual bundle",
+    "Forward, turn, strafe and firing/ammo HUD",
+    "Pause, restart, menu, automap",
+    "Missing/corrupt/unsupported WAD recovery",
+    "Independent instances and rapid restart",
+    "HD, 4K, portrait and odd sizes; 4:3 and stretch; smoothing",
+    "OpenGL state including PBO and unpack stride"
+  ],
+  "gpu": "Apple M2 Max"
+}
